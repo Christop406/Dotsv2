@@ -7,7 +7,7 @@ TODO:
 -
 - ~~Generate Random Numbers to generate a random position~~
 - Pseudo-randomly generate different colors for each ball
-- Check where the player taps
+- ~~Check where the player taps~~
 - Score Counter
 - Start/End Screens
 - Sound Effects
