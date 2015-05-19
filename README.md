@@ -5,7 +5,7 @@ A Game where the player taps a random appearing ball in the amount of time allot
 
 TODO:
 -
-- ~Generate Random Numbers to generate a random position~
+- ~~Generate Random Numbers to generate a random position~~
 - Pseudo-randomly generate different colors for each ball
 - Check where the player taps
 - Score Counter
