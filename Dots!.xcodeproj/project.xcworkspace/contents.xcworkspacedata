@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../Dots!/TouchableSpriteNode.swift">
-   </FileRef>
-   <FileRef
-      location = "self:Dots!.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
