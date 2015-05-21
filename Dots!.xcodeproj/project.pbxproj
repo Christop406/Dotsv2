@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF00865A1B0DAD1A002F05D0 /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0086591B0DAD1A002F05D0 /* HighScore.swift */; };
+		FF00865C1B0DADAA002F05D0 /* HighScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF00865B1B0DADAA002F05D0 /* HighScoreManager.swift */; };
+		FF00865E1B0DAEE8002F05D0 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF00865D1B0DAEE8002F05D0 /* GameOver.swift */; };
+		FF0086601B0DB47E002F05D0 /* GameData.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF00865F1B0DB47E002F05D0 /* GameData.plist */; };
+		FF4B99931B0C1C11008851EC /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B99921B0C1C10008851EC /* MainMenu.swift */; };
+		FFC8A7E41B0C03D90078FE31 /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC8A7E31B0C03D90078FE31 /* StartScreenViewController.swift */; };
 		FFCDE9071B095271009B9949 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCDE9061B095271009B9949 /* AppDelegate.swift */; };
 		FFCDE9091B095271009B9949 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FFCDE9081B095271009B9949 /* GameScene.sks */; };
 		FFCDE90B1B095271009B9949 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCDE90A1B095271009B9949 /* GameScene.swift */; };
@@ -15,9 +21,6 @@
 		FFCDE9121B095271009B9949 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFCDE9111B095271009B9949 /* Images.xcassets */; };
 		FFCDE9151B095271009B9949 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFCDE9131B095271009B9949 /* LaunchScreen.xib */; };
 		FFCDE9211B095271009B9949 /* Dots_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCDE9201B095271009B9949 /* Dots_Tests.swift */; };
-		FFCDE92B1B095416009B9949 /* TouchableSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCDE92A1B095416009B9949 /* TouchableSpriteNode.swift */; };
-		FFCDE92D1B0959FC009B9949 /* CreateRandomBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCDE92C1B0959FC009B9949 /* CreateRandomBall.swift */; };
-		FFCDE92F1B095DA7009B9949 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCDE92E1B095DA7009B9949 /* Random.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +34,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FF0086591B0DAD1A002F05D0 /* HighScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
+		FF00865B1B0DADAA002F05D0 /* HighScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreManager.swift; sourceTree = "<group>"; };
+		FF00865D1B0DAEE8002F05D0 /* GameOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
+		FF00865F1B0DB47E002F05D0 /* GameData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameData.plist; sourceTree = "<group>"; };
+		FF4B99921B0C1C10008851EC /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		FFC8A7E31B0C03D90078FE31 /* StartScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
 		FFCDE9011B095271009B9949 /* Dots!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dots!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFCDE9051B095271009B9949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFCDE9061B095271009B9949 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,9 +52,6 @@
 		FFCDE91A1B095271009B9949 /* Dots!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dots!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFCDE91F1B095271009B9949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFCDE9201B095271009B9949 /* Dots_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dots_Tests.swift; sourceTree = "<group>"; };
-		FFCDE92A1B095416009B9949 /* TouchableSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchableSpriteNode.swift; sourceTree = "<group>"; };
-		FFCDE92C1B0959FC009B9949 /* CreateRandomBall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRandomBall.swift; sourceTree = "<group>"; };
-		FFCDE92E1B095DA7009B9949 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +75,7 @@
 		FFCDE8F81B095271009B9949 = {
 			isa = PBXGroup;
 			children = (
+				FF00865F1B0DB47E002F05D0 /* GameData.plist */,
 				FFCDE9031B095271009B9949 /* Dots! */,
 				FFCDE91D1B095271009B9949 /* Dots!Tests */,
 				FFCDE9021B095271009B9949 /* Products */,
@@ -87,9 +94,9 @@
 		FFCDE9031B095271009B9949 /* Dots! */ = {
 			isa = PBXGroup;
 			children = (
-				FFCDE92E1B095DA7009B9949 /* Random.swift */,
-				FFCDE92C1B0959FC009B9949 /* CreateRandomBall.swift */,
-				FFCDE92A1B095416009B9949 /* TouchableSpriteNode.swift */,
+				FF00865B1B0DADAA002F05D0 /* HighScoreManager.swift */,
+				FF0086591B0DAD1A002F05D0 /* HighScore.swift */,
+				FF00865D1B0DAEE8002F05D0 /* GameOver.swift */,
 				FFCDE9061B095271009B9949 /* AppDelegate.swift */,
 				FFCDE9081B095271009B9949 /* GameScene.sks */,
 				FFCDE90A1B095271009B9949 /* GameScene.swift */,
@@ -98,6 +105,8 @@
 				FFCDE9111B095271009B9949 /* Images.xcassets */,
 				FFCDE9131B095271009B9949 /* LaunchScreen.xib */,
 				FFCDE9041B095271009B9949 /* Supporting Files */,
+				FFC8A7E31B0C03D90078FE31 /* StartScreenViewController.swift */,
+				FF4B99921B0C1C10008851EC /* MainMenu.swift */,
 			);
 			path = "Dots!";
 			sourceTree = "<group>";
@@ -208,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFCDE9151B095271009B9949 /* LaunchScreen.xib in Resources */,
+				FF0086601B0DB47E002F05D0 /* GameData.plist in Resources */,
 				FFCDE9121B095271009B9949 /* Images.xcassets in Resources */,
 				FFCDE9091B095271009B9949 /* GameScene.sks in Resources */,
 				FFCDE9101B095271009B9949 /* Main.storyboard in Resources */,
@@ -228,9 +238,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFCDE92B1B095416009B9949 /* TouchableSpriteNode.swift in Sources */,
-				FFCDE92D1B0959FC009B9949 /* CreateRandomBall.swift in Sources */,
-				FFCDE92F1B095DA7009B9949 /* Random.swift in Sources */,
+				FFC8A7E41B0C03D90078FE31 /* StartScreenViewController.swift in Sources */,
+				FF4B99931B0C1C11008851EC /* MainMenu.swift in Sources */,
+				FF00865A1B0DAD1A002F05D0 /* HighScore.swift in Sources */,
+				FF00865C1B0DADAA002F05D0 /* HighScoreManager.swift in Sources */,
+				FF00865E1B0DAEE8002F05D0 /* GameOver.swift in Sources */,
 				FFCDE90B1B095271009B9949 /* GameScene.swift in Sources */,
 				FFCDE90D1B095271009B9949 /* GameViewController.swift in Sources */,
 				FFCDE9071B095271009B9949 /* AppDelegate.swift in Sources */,
@@ -431,6 +443,7 @@
 				FFCDE9261B095271009B9949 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FFCDE9271B095271009B9949 /* Build configuration list for PBXNativeTarget "Dots!Tests" */ = {
 			isa = XCConfigurationList;
@@ -439,6 +452,7 @@
 				FFCDE9291B095271009B9949 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
