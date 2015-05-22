@@ -11,7 +11,7 @@ import SpriteKit
 
 class TimeTrial : DBasicLevel{
     let TIME_INCREMENT = 20.0
-    var gameTimer: NSTimer = NSTimer()
+    //gameTimer: NSTimer = NSTimer()
     var firstTouch = true
     var timeLeft: Int = 19
     let timeLeftLabel = SKLabelNode(text: "20")
@@ -29,12 +29,16 @@ class TimeTrial : DBasicLevel{
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         super.touchesBegan(touches, withEvent: event)
+        if !ran{
+            addChild(timeLeftLabel)
+        }
+
         if firstTouch {
             let shownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("decTimer"), userInfo: nil, repeats: true)
             gameTimer = NSTimer.scheduledTimerWithTimeInterval(TIME_INCREMENT, target:self, selector: Selector("endGame"), userInfo: nil, repeats: false)
             firstTouch = false
         }
-        self.addChild(timeLeftLabel)
+
 
     }
     
@@ -46,10 +50,11 @@ class TimeTrial : DBasicLevel{
     func endGame(){
         var scene =  GameOver(size: self.size)
         scene.setMyScore(scoreCount)
-        let skView = super.view! as SKView
+        let skView = self.view!
         skView.ignoresSiblingOrder = true
         scene.scaleMode = .ResizeFill
         scene.size = skView.bounds.size
+        scene.setMessage("Time's Up!")
         skView.presentScene(scene)
     }
     

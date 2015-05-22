@@ -18,6 +18,7 @@ class GameOver : SKScene{
     private let userDefaults = NSUserDefaults.standardUserDefaults()
     private var score = 0
     private var newHigh: Bool = false
+    private let message = SKLabelNode()
     
     override func didMoveToView(view: SKView) {
         
@@ -54,6 +55,12 @@ class GameOver : SKScene{
         highScore.text = getHighScore()
         highScore.position = CGPointMake(CGRectGetMidX(self.frame), 0)
         self.addChild(highScore)
+        
+        //Add the loss message
+        message.position = CGPointMake(CGRectGetMidX(self.frame), 3*CGRectGetHeight(self.frame)/4)
+        message.fontColor = SKColor.whiteColor()
+        message.fontSize = 30
+        self.addChild(message)
     }
     
     func setMyScore(score: Int){
@@ -87,6 +94,10 @@ class GameOver : SKScene{
         else {
             return "No High Score!"
         }
+    }
+    
+    func setMessage(message: String){
+        self.message.text = message
     }
 }
 

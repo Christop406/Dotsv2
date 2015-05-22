@@ -22,6 +22,9 @@ class DBasicLevel : SKScene{
     var tapCount = 0
     var blopSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("blop", ofType: "wav")!)
     var audioPlayer = AVAudioPlayer()
+    var gameTimer: NSTimer = NSTimer()
+    var hasTimer: Bool = false
+    var ran: Bool = false
     
     override func didMoveToView(view: SKView) {
         /*SET UP THE SCENE*/
@@ -94,14 +97,15 @@ class DBasicLevel : SKScene{
         }
         else{
             //Change background to red if the player touches outside the ball
-            //TODO: Lose the game if they do so
-            self.backgroundColor = SKColor.redColor()
+            //self.backgroundColor = SKColor.redColor()
             var scene =  GameOver(size: self.size)
             scene.setMyScore(scoreCount)
             let skView = self.view! as SKView
             skView.ignoresSiblingOrder = true
             scene.scaleMode = .ResizeFill
             scene.size = skView.bounds.size
+            scene.setMessage("You Lost!")
+            ran = true
             skView.presentScene(scene)
         }
         tapCount++
