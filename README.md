@@ -10,9 +10,9 @@ TODO:
 - ~~Check where the player taps~~
 - ~~Score Counter~~
 - Start/End Screens (Kind of done)
-- Sound Effects
+- ~~Sound Effects~~
 - Ad Implementations
 - Code Cleaning
 - ~~HighScore Counter~~ (Also saves highscore)
 - Different Gamemodes
-- Timer
+- ~~Timer~~

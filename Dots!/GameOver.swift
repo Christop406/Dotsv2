@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import GameKit
 
 class GameOver : SKScene{
     private let restartButton: SKShapeNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 100, height: 100))
@@ -16,9 +17,14 @@ class GameOver : SKScene{
     private let highScore: SKLabelNode = SKLabelNode()
     private let userDefaults = NSUserDefaults.standardUserDefaults()
     private var score = 0
-    //let manager = HighScoreManager()
+    private var newHigh: Bool = false
     
     override func didMoveToView(view: SKView) {
+        
+        //Background Color
+        self.backgroundColor = SKColor.redColor()
+        
+        //Change the button color based on score
         if(score <= 0){
             restartButton.fillColor = SKColor.redColor()
         }
@@ -44,9 +50,6 @@ class GameOver : SKScene{
         self.addChild(restartLabel)
         
         //Add the new score and display it
-        //manager.addNewScore(score)
-        //manager.save()
-        //println(self.score)
         saveScore()
         highScore.text = getHighScore()
         highScore.position = CGPointMake(CGRectGetMidX(self.frame), 0)
@@ -60,8 +63,9 @@ class GameOver : SKScene{
     func saveScore(){
         if let highscore: AnyObject = userDefaults.valueForKey("highscore") {
             if Int((highscore as! Int)) < score {
-                userDefaults.setValue(highscore, forKey: "highscore")
+                userDefaults.setValue(score, forKey: "highscore")
                 userDefaults.synchronize() // don't forget this!!!!
+                newHigh = true
             }
         }
         else {
@@ -73,6 +77,11 @@ class GameOver : SKScene{
     
     func getHighScore() -> String{
         if let highscore: AnyObject = userDefaults.valueForKey("highscore") {
+            if(newHigh){
+                newHigh = false
+                return "New High Score! \(highscore)"
+
+            }
             return "High Score: \(highscore)"
         }
         else {

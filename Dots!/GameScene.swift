@@ -19,7 +19,7 @@ class GameScene: SKScene {
         self.addChild(welcomelabel)
         
         let startButton = SKShapeNode(circleOfRadius: 100)
-        startButton.name = "startbutton"
+        startButton.name = "tt_startbutton"
         startButton.fillColor = SKColor.redColor()
         startButton.position = CGPointMake(CGRectGetMidX(self.frame), 3*CGRectGetMaxY(self.frame)/4)
         self.addChild(startButton)
@@ -31,8 +31,8 @@ class GameScene: SKScene {
         let touchedNode = self.nodeAtPoint(positionInScene)
         
         if let name = touchedNode.name{
-            if name == "startbutton"{
-                var scene =  MainMenu(size: self.size)
+            if name == "tt_startbutton"{
+                var scene =  TimeTrial(size: self.size)
                 let skView = self.view! as SKView
                 skView.ignoresSiblingOrder = true
                 scene.scaleMode = .ResizeFill

@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import AVFoundation
 import SpriteKit
 
-class MainMenu : SKScene{
+class DBasicLevel : SKScene{
     var score = SKLabelNode(text: "0")
     var timer = SKLabelNode()
     var scoreCount: Int = 0
@@ -19,9 +20,15 @@ class MainMenu : SKScene{
     var viewMidX: Int = 0
     var viewMidY: Int = 0
     var tapCount = 0
+    var blopSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("blop", ofType: "wav")!)
+    var audioPlayer = AVAudioPlayer()
     
     override func didMoveToView(view: SKView) {
         /*SET UP THE SCENE*/
+        
+        //Setup Audio Files/Player
+        audioPlayer = AVAudioPlayer(contentsOfURL: blopSound, error: nil)
+        audioPlayer.prepareToPlay()
         
         //Color the Background
         self.backgroundColor = SKColor.whiteColor()
@@ -34,6 +41,7 @@ class MainMenu : SKScene{
         Colors.append(SKColor.purpleColor())
         Colors.append(SKColor.yellowColor())
         Colors.append(SKColor.orangeColor())
+        //Colors.append(SKColor(red: 255, green: 153, blue: 204, alpha: 1))
         
         //Get length of array of colors and find a random start index
         colorIndex = UInt32(Colors.count)
@@ -80,6 +88,7 @@ class MainMenu : SKScene{
                 //print("Touched") -- For testing purposes
                 scoreCount++
                 addBall()
+                audioPlayer.play()
                 //self.addChild(score)
             }
         }
