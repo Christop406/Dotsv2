@@ -8,11 +8,14 @@
 
 import UIKit
 import SpriteKit
+import iAd
+import GameKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ADBannerViewDelegate {
 
     var window: UIWindow?
+
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

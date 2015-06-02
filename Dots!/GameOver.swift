@@ -19,8 +19,11 @@ class GameOver : SKScene{
     private var score = 0
     private var newHigh: Bool = false
     private let message = SKLabelNode()
+    var gameMode: Int = 0
+    var sizeOfView: CGRect = CGRect()
     
     override func didMoveToView(view: SKView) {
+        
         
         //Background Color
         self.backgroundColor = SKColor.redColor()
@@ -42,18 +45,20 @@ class GameOver : SKScene{
             restartLabel.fontColor = SKColor.blackColor()
         }
         restartButton.position = CGPointMake(CGRectGetMidX(self.frame) - 50, CGRectGetMidY(self.frame) - 50)
+        restartButton.name = "rsbutton"
         self.addChild(restartButton)
         
         restartLabel.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 20)
         restartLabel.text = String(score)
         restartLabel.fontSize = 40
+        restartLabel.name = "rslabel"
         //restartLabel.fontColor = SKColor.whiteColor()
         self.addChild(restartLabel)
         
         //Add the new score and display it
         saveScore()
         highScore.text = getHighScore()
-        highScore.position = CGPointMake(CGRectGetMidX(self.frame), 0)
+        highScore.position = CGPointMake(CGRectGetMidX(self.frame), 55)
         self.addChild(highScore)
         
         //Add the loss message
@@ -61,6 +66,31 @@ class GameOver : SKScene{
         message.fontColor = SKColor.whiteColor()
         message.fontSize = 30
         self.addChild(message)
+        NSNotificationCenter.defaultCenter().postNotificationName("showiAdBanner", object: nil)
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        let touch:UITouch = touches.first! as! UITouch
+        let positionInScene = touch.locationInNode(self)
+        let touchedNode = self.nodeAtPoint(positionInScene)
+        
+        if let name = touchedNode.name {
+            //The first ball that shows up, startball
+            if name == "rsbutton" || name == "rslabel" {
+                //NSNotificationCenter.defaultCenter().postNotificationName("hideiAdBanner", object: nil)
+                var bounds: CGRect = UIScreen.mainScreen().bounds
+                var scene =  MainMenu(size: self.size)
+                let skView = self.view! as SKView
+                skView.ignoresSiblingOrder = true
+                scene.scaleMode = .ResizeFill
+                scene.size = skView.bounds.size
+                let fade: SKTransition = SKTransition.crossFadeWithDuration(0.25)
+                //let slide: SKTransition = SKTransition.flipVerticalWithDuration(0.5)
+                scene.scaleMode = .Fill
+                skView.presentScene(scene, transition: fade)
+            }
+        }
+
     }
     
     func setMyScore(score: Int){
@@ -68,22 +98,42 @@ class GameOver : SKScene{
     }
     
     func saveScore(){
-        if let highscore: AnyObject = userDefaults.valueForKey("highscore") {
+        var key: String
+        /*gameMode Codes //
+        0 - Time Trial
+        1 - Infinite
+                            */
+        if gameMode == 0 {
+            key = "tt_highscore"
+        } else if gameMode == 1 {
+            key = "i_highscore"
+        } else {
+            key = "extraneous"
+        }
+        if let highscore: AnyObject = userDefaults.valueForKey(key) {
             if Int((highscore as! Int)) < score {
-                userDefaults.setValue(score, forKey: "highscore")
+                userDefaults.setValue(score, forKey: key)
                 userDefaults.synchronize() // don't forget this!!!!
                 newHigh = true
             }
         }
         else {
-            userDefaults.setValue(score, forKey: "highscore")
+            userDefaults.setValue(score, forKey: key)
             userDefaults.synchronize() // don't forget this!!!!
         }
 
     }
     
     func getHighScore() -> String{
-        if let highscore: AnyObject = userDefaults.valueForKey("highscore") {
+        var key: String
+        if gameMode == 0 {
+            key = "tt_highscore"
+        } else if gameMode == 1 {
+            key = "i_highscore"
+        } else {
+            key = "extraneous"
+        }
+        if let highscore: AnyObject = userDefaults.valueForKey(key) {
             if(newHigh){
                 newHigh = false
                 return "New High Score! \(highscore)"
@@ -98,6 +148,13 @@ class GameOver : SKScene{
     
     func setMessage(message: String){
         self.message.text = message
+    }
+    func setEndGameMode(mode: Int){
+        gameMode = mode
+    }
+    
+    func sizeOfView(size: CGRect){
+        sizeOfView = size
     }
 }
 

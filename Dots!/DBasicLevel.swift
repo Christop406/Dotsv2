@@ -9,6 +9,7 @@
 import Foundation
 import AVFoundation
 import SpriteKit
+import iAd
 
 class DBasicLevel : SKScene{
     var score = SKLabelNode(text: "0")
@@ -25,9 +26,14 @@ class DBasicLevel : SKScene{
     var gameTimer: NSTimer = NSTimer()
     var hasTimer: Bool = false
     var ran: Bool = false
+    var shownTimer = NSTimer()
+    var ballSize: Int = 75
+    var gm = 0
+    var sizeOfView: CGRect = CGRect()
     
     override func didMoveToView(view: SKView) {
         /*SET UP THE SCENE*/
+        NSNotificationCenter.defaultCenter().postNotificationName("hideiAdBanner", object: nil)
         
         //Setup Audio Files/Player
         audioPlayer = AVAudioPlayer(contentsOfURL: blopSound, error: nil)
@@ -52,13 +58,14 @@ class DBasicLevel : SKScene{
         print(startingColor)
         
         //Add the first ball to the scene, uses SKShapeNode, r=75, color is "random")
-        addBall()
+        addBall(ballSize)
         
         //Add the welcome message: "Press the Ball"
         let welcomeMessage = SKLabelNode(text: "Press the Ball")
         welcomeMessage.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         welcomeMessage.fontColor = SKColor.blackColor()
         welcomeMessage.fontSize = 30
+        welcomeMessage.name = "wm"
         self.addChild(welcomeMessage)
         
         //Setup the score counter
@@ -66,6 +73,8 @@ class DBasicLevel : SKScene{
         score.fontSize = 150
         score.fontName = "Avenir Next"
         score.fontColor = SKColor.blackColor()
+        
+        
         //self.addChild(score) -- We don't want to add the score until the user has tapped the first ball
         
 
@@ -81,16 +90,17 @@ class DBasicLevel : SKScene{
         if let name = touchedNode.name
         {
             //The first ball that shows up, startball
-            if name == "startball"
+            if name == "startball" || name == "wm"
             {
                 print("Touched")
-                addBall()
+                addBall(ballSize)
                 self.addChild(score)
             }//Any ball created after the first will use this statement
             else if name == "ball"{
                 //print("Touched") -- For testing purposes
                 scoreCount++
-                addBall()
+                addBall(ballSize)
+                //print(ballSize)
                 audioPlayer.play()
                 //self.addChild(score)
             }
@@ -99,14 +109,17 @@ class DBasicLevel : SKScene{
             //Change background to red if the player touches outside the ball
             //self.backgroundColor = SKColor.redColor()
             var scene =  GameOver(size: self.size)
-            scene.setMyScore(scoreCount)
+            scene.setMyScore(0)
             let skView = self.view! as SKView
             skView.ignoresSiblingOrder = true
             scene.scaleMode = .ResizeFill
             scene.size = skView.bounds.size
             scene.setMessage("You Lost!")
+            scene.setEndGameMode(gm)
+            gameTimer.invalidate()
+            shownTimer.invalidate()
             ran = true
-            skView.presentScene(scene)
+            skView.presentScene(scene, transition: SKTransition.crossFadeWithDuration(0.25))
         }
         tapCount++
         
@@ -122,7 +135,7 @@ class DBasicLevel : SKScene{
     }
     
     //Adds a new ball in a random spot
-    func addBall() {
+    func addBall(size: Int) {
         
         //Find and set bounds of the view
         let viewMidX = view!.bounds.midX
@@ -131,7 +144,7 @@ class DBasicLevel : SKScene{
         let sceneWidth = view?.scene!.frame.width
         
         //Setup of the ball constant
-        let currentBall = SKShapeNode(circleOfRadius: 75)
+        let currentBall = SKShapeNode(circleOfRadius: CGFloat(size))
         currentBall.fillColor = pickColor()
         
         //Finding the random position of the ball
@@ -149,6 +162,7 @@ class DBasicLevel : SKScene{
         self.removeAllChildren()
         if scoreCount != 0{
             self.addChild(score)
+            //self.addChild(childNodeWithName("timer")!)
         }
         self.addChild(currentBall)
     }
@@ -161,5 +175,13 @@ class DBasicLevel : SKScene{
             colorIndex = 0
         }
         return newColor
+    }
+    
+    func setGameMode(mode: Int){
+        gm = mode
+    }
+    
+    func sizeOfView(size: CGRect){
+        sizeOfView = size
     }
 }

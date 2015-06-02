@@ -8,37 +8,42 @@
 
 import SpriteKit
 import Foundation
+import iAd
 
 class GameScene: SKScene {
 
     override func didMoveToView(view: SKView) {
         self.backgroundColor = SKColor.whiteColor()
-        let welcomelabel = SKLabelNode(text: "Dots!")
-        welcomelabel.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)/2)
-        welcomelabel.fontColor = SKColor.blueColor()
-        self.addChild(welcomelabel)
+        let timer = NSTimer.scheduledTimerWithTimeInterval(4, target: self, selector: "presentMenu", userInfo: nil, repeats: false)
         
-        let startButton = SKShapeNode(circleOfRadius: 100)
-        startButton.name = "tt_startbutton"
-        startButton.fillColor = SKColor.redColor()
-        startButton.position = CGPointMake(CGRectGetMidX(self.frame), 3*CGRectGetMaxY(self.frame)/4)
-        self.addChild(startButton)
+        //TODO: Make "Dots!" Logo
+        
+        let loadingLabel = SKLabelNode(text: "Dots!")
+        loadingLabel.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
+        loadingLabel.fontColor = SKColor.blackColor()
+        loadingLabel.fontSize = 60
+        loadingLabel.alpha = 0
+        self.addChild(loadingLabel)
+        let fadeIn = SKAction.fadeInWithDuration(1)
+        let wait = SKAction.waitForDuration(2)
+        let fadeOut = SKAction.fadeOutWithDuration(1)
+        let sequence = SKAction.sequence([fadeIn, wait, fadeOut])
+        loadingLabel.runAction(sequence)
+        
+        //TODO: Add Loading Animation
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        let touch:UITouch = touches.first! as! UITouch
-        let positionInScene = touch.locationInNode(self)
-        let touchedNode = self.nodeAtPoint(positionInScene)
         
-        if let name = touchedNode.name{
-            if name == "tt_startbutton"{
-                var scene =  TimeTrial(size: self.size)
-                let skView = self.view! as SKView
-                skView.ignoresSiblingOrder = true
-                scene.scaleMode = .ResizeFill
-                scene.size = skView.bounds.size
-                skView.presentScene(scene)
-            }
-        }
+    }
+    
+    func presentMenu(){
+        var scene = MainMenu(size: self.size)
+        let skView = self.view! as SKView
+        skView.ignoresSiblingOrder = true
+        scene.scaleMode = .ResizeFill
+        scene.size = skView.bounds.size
+        //NSNotificationCenter.defaultCenter().postNotificationName("hideiAdBanner", object: nil)
+        skView.presentScene(scene, transition: SKTransition.fadeWithColor(UIColor.whiteColor(), duration: 1))
     }
 }
